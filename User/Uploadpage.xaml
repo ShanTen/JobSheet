@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl
+    x:Class="Work_winui_.User.Uploadpage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Work_winui_.User"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header Section -->
+        <StackPanel Grid.Row="0" Margin="40,20,40,0">
+            <TextBlock Text="UPLOAD JOBSHEET" 
+                     FontSize="32" 
+                     FontWeight="SemiBold"
+                     HorizontalAlignment="Left"
+                     Margin="0,0,0,30"/>
+                     
+            <!-- Heater Type Selection -->
+            <StackPanel HorizontalAlignment="Center" Margin="0,0,0,30">
+                <TextBlock Text="HEATER TYPE" 
+                         Margin="0,0,0,8"
+                         FontSize="14"/>
+                <ComboBox x:Name="HeaterTypeComboBox"
+                        Width="300"
+                        PlaceholderText="SELECT HEATER TYPE"
+                        SelectionChanged="HeaterTypeComboBox_SelectionChanged">
+                    <ComboBoxItem Content="SELECT"/>
+                    <ComboBoxItem Content="HIGH DENSITY CARTRIDGE HEATER"/>
+                    <ComboBoxItem Content="TUBULAR HEATER"/>
+                        <ComboBoxItem Content="SWAGGING TO FINISHING"/>
+                    </ComboBox>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- Form Content -->
+        <Grid x:Name="CartridgeHeaterForm" 
+              Grid.Row="1"  
+              CornerRadius="8"
+              Margin="40,0,40,40"
+              Visibility="Collapsed">
+            
+            <StackPanel Margin="30">
+                <!-- Customer Information -->
+                <Grid Margin="0,0,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    
+                    <TextBlock Grid.Row="0" Grid.Column="0" 
+                               Text="CUSTOMER NAME" 
+                               VerticalAlignment="Center"
+                               Margin="0,0,10,15"/>
+                    <TextBox Grid.Row="0" Grid.Column="1" 
+                             x:Name="CustomerNameTextBox" 
+                             PlaceholderText="Enter customer name"
+                             Margin="0,0,0,15"/>
+                    
+                    <TextBlock Grid.Row="1" Grid.Column="0" 
+                               Text="ORDER NO:" 
+                               VerticalAlignment="Center"
+                               Margin="0,0,10,15"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" 
+                             x:Name="OrderNoTextBox" 
+                             PlaceholderText="Enter order number"
+                             Margin="0,0,0,15"/>
+                    
+                    <TextBlock Grid.Row="2" Grid.Column="0" 
+                               Text="DATE:" 
+                               VerticalAlignment="Center"
+                               Margin="0,0,10,15"/>
+                    <DatePicker Grid.Row="2" Grid.Column="1" 
+                                x:Name="DatePicker" 
+                                Margin="0,0,0,15"/>
+                </Grid>
+
+                <!-- Dimensions -->
+                <StackPanel Orientation="Horizontal" 
+                            HorizontalAlignment="Center" 
+                            Margin="0,20,0,30">
+                    <TextBlock Text="DIA" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <TextBox x:Name="DiameterTextBox" 
+                             Width="100" 
+                             Margin="0,0,10,0"
+                             PlaceholderText="eg. 12.5"/>
+                    
+                    <TextBlock Text="X" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <TextBox x:Name="LengthTextBox" 
+                             Width="100" 
+                             Margin="0,0,10,0"
+                             PlaceholderText="eg. 150"/>
+                    
+                    <TextBlock Text="L X" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <TextBox x:Name="WattsTextBox" 
+                             Width="100" 
+                             Margin="0,0,10,0"
+                             PlaceholderText="eg. 250"/>
+                    
+                    <TextBlock Text="WATTS /" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <TextBox x:Name="VoltsTextBox" 
+                             Width="100" 
+                             Margin="0,0,10,0"
+                             PlaceholderText="eg. 220"/>
+                    
+                    <TextBlock Text="VOLTS" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <!-- Upload Button -->
+                <Button x:Name="UploadButton"
+                        Content="UPLOAD"
+                        HorizontalAlignment="Center"
+                        Padding="60,10"
+                        Click="UploadButton_Click"/>
+            </StackPanel>
+        </Grid>
+        <Grid x:Name="TubularHeaterForm">
+            
+        </Grid>
+    </Grid>
+    </ScrollViewer>
+
+</UserControl>

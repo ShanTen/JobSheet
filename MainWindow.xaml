@@ -1,0 +1,27 @@
+<Window
+    x:Class="Work_winui_.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Work_winui_"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local1="using:Work_winui_.User"
+    mc:Ignorable="d"
+    Title="Work(winui)">	
+    <SplitView x:Name="splitView"
+               PaneBackground="Transparent"
+               IsPaneOpen="True"
+               DisplayMode="CompactInline"
+               OpenPaneLength="200">
+		<SplitView.Pane>
+			<local1:SideBar x:Name="sideBar" />
+		</SplitView.Pane>		
+        <SplitView.Content >
+            <Frame x:Name="ContentFrame" Background="White" CornerRadius="10" Translation="0,0,16" Margin="0,15,15,15" BorderBrush="#FFE0E0E0" BorderThickness="1">
+                <Frame.Shadow>
+                    <ThemeShadow/>
+                </Frame.Shadow>
+            </Frame>
+		</SplitView.Content>
+	</SplitView>
+</Window>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl
+    x:Class="Work_winui_.User.SideBar"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Work_winui_.User"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">      
+    <NavigationView x:Name="Nav" 
+        PaneDisplayMode="Left" 
+        IsPaneOpen="True" 
+        IsPaneToggleButtonVisible="False"
+        Background="Transparent">
+        <NavigationView.MenuItems>
+            <NavigationViewItem Icon="Home" Content="HOME" Tag="Homepage" />
+            <NavigationViewItemHeader Content="JOBSHEET"/>
+            <NavigationViewItem Icon="Edit" Content="GENERATE" Tag="Generate" Margin="20,0,0,0" />
+            <NavigationViewItem Icon="Upload" Content="UPLOAD" Tag="Uploadpage" Margin="20,0,0,0" />
+            <NavigationViewItem Icon="Find" Content="SEARCH" Tag="Searchpage" Margin="20,0,0,0" />
+        </NavigationView.MenuItems>
+    </NavigationView>
+</UserControl>

@@ -1,0 +1,925 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl
+    x:Class="Work_winui_.User.Generatepage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Work_winui_.User"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <!-- Header Section -->
+            <StackPanel Margin="40,20,40,0">
+                <TextBlock Text="GENERATE JOBSHEET" 
+                         FontSize="32" 
+                         FontWeight="SemiBold"
+                         HorizontalAlignment="Left"
+                         Margin="0,0,0,30"/>
+
+                <StackPanel Width="300" 
+                          HorizontalAlignment="Center"  
+                          Margin="0,0,0,20">
+                    <TextBlock Text="HEATER TYPE" 
+                             Margin="0,0,0,8"
+                             FontSize="14"/>
+                    <ComboBox x:Name="HeaterTypeComboBox"
+                            Width="300"
+                            PlaceholderText="SELECT HEATER TYPE"
+                            SelectionChanged="HeaterTypeComboBox_SelectionChanged">
+                        <ComboBoxItem Content="SELECT"/>
+                        <ComboBoxItem Content="HIGH DENSITY CARTRIDGE HEATER"/>
+                        <ComboBoxItem Content="TUBULAR HEATER"/>
+                        <ComboBoxItem Content="SWAGGING TO FINISHING"/>
+                    </ComboBox>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- High Density Cartridge Heater Form -->
+            <Grid x:Name="CartridgeHeaterForm" 
+                  Visibility="Collapsed"
+                  Margin="0,200,0,0">
+                <Grid CornerRadius="10">
+                    <StackPanel Margin="80,20,80,0">
+                        <!-- Basic Information -->
+                        <StackPanel Margin="135,20,40,0">
+                            <!-- Customer Name -->
+                            <Grid Margin="0,0,0,15">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                
+                                <TextBlock Grid.Row="0" Text="CUSTOMER NAME:" Margin="0,0,0,5" />
+                                <TextBox Grid.Row="1" x:Name="CustomerNameTextBox" PlaceholderText="Enter customer name" />
+                            </Grid>
+
+                            <!-- Order Number -->
+                            <Grid Margin="0,0,0,15">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                
+                                <TextBlock Grid.Row="0" Text="ORDER NO:" Margin="0,0,0,5" />
+                                <TextBox Grid.Row="1" x:Name="OrderNoTextBox" PlaceholderText="Enter order number" />
+                            </Grid>
+
+                            <!-- Date -->
+                            <Grid Margin="0,0,0,15">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                
+                                <TextBlock Grid.Row="0" Text="DATE:" Margin="0,0,0,5" />
+                                <DatePicker Grid.Row="1" x:Name="DatePicker" />
+                            </Grid>
+
+                            <!-- Diameter and Watts -->                         
+                            <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,0,0,15">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="DIAMETER:"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox x:Name="DiameterTextBox" Margin="0,5,0,0" PlaceholderText="e.g. 12.5"/>
+                                        <TextBlock Grid.Column="1" Text="mm" VerticalAlignment="Center" Margin="8,5,0,0"/>
+                                    </Grid>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="WATTS:"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox x:Name="WattsTextBox" Margin="0,5,0,0" PlaceholderText="e.g. 250"/>
+                                        <TextBlock Grid.Column="1" Text="W" VerticalAlignment="Center" Margin="8,5,0,0"/>
+                                    </Grid>
+                                </StackPanel>
+                            </Grid>
+                            
+                            <!-- Length and Volts -->                         
+                            <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,0,0,15">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="LENGTH:"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox x:Name="LengthTextBox" Margin="0,5,0,0" PlaceholderText="e.g. 150"/>
+                                        <TextBlock Grid.Column="1" Text="mm" VerticalAlignment="Center" Margin="8,5,0,0"/>
+                                    </Grid>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="VOLTS:"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox x:Name="VoltsTextBox" Margin="0,5,0,0" PlaceholderText="e.g. 220"/>
+                                        <TextBlock Grid.Column="1" Text="V" VerticalAlignment="Center" Margin="8,5,0,0"/>
+                                    </Grid>
+                                </StackPanel>
+                            </Grid>
+
+                            <!-- Process Information with edit buttons -->
+                            <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,15,0,15">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="DIAMETER AFTER PROCESS:"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox x:Name="DiameterAfterProcessTextBox" Margin="0,5,0,0" IsReadOnly="True" Background="LightGray" PlaceholderText="Auto calculated"/>
+                                        <TextBlock Grid.Column="1" Text="mm" VerticalAlignment="Center" Margin="8,5,8,0"/>
+                                        <Button Grid.Column="2" Width="32" Height="32" Margin="0,5,0,0" Padding="0" Click="EditButton_Click">
+                                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE70F;"/>
+                                        </Button>
+                                    </Grid>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="TUBE DIAMETER:"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox x:Name="TubeDiameterTextBox" Margin="0,5,0,0" IsReadOnly="True" Background="LightGray" PlaceholderText="Auto calculated"/>
+                                        <TextBlock Grid.Column="1" Text="mm" VerticalAlignment="Center" Margin="8,5,8,0"/>
+                                        <Button Grid.Column="2" Width="32" Height="32" Margin="0,5,0,0" Padding="0" Click="EditButton_Click">
+                                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE70F;"/>
+                                        </Button>
+                                    </Grid>
+                                </StackPanel>
+                            </Grid>
+
+                            <!-- Additional Manufacturing Details with edit buttons -->
+                            <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,0,0,15">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="DIAMETER AFTER MACHINING:"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox x:Name="DiameterAfterMachiningTextBox" Margin="0,5,0,0" IsReadOnly="True" Background="LightGray" PlaceholderText="Auto calculated"/>
+                                        <TextBlock Grid.Column="1" Text="mm" VerticalAlignment="Center" Margin="8,5,8,0"/>
+                                        <Button Grid.Column="2" Width="32" Height="32" Margin="0,5,0,0" Padding="0" Click="EditButton_Click">
+                                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE70F;"/>
+                                        </Button>
+                                    </Grid>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="TUBE THICKNESS:"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox x:Name="TubeThicknessTextBox" Margin="0,5,0,0" IsReadOnly="True" Background="LightGray" PlaceholderText="Auto calculated"/>
+                                        <TextBlock Grid.Column="1" Text="mm" VerticalAlignment="Center" Margin="8,5,8,0"/>
+                                        <Button Grid.Column="2" Width="32" Height="32" Margin="0,5,0,0" Padding="0" Click="EditButton_Click">
+                                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE70F;"/>
+                                        </Button>
+                                    </Grid>
+                                </StackPanel>
+                            </Grid>
+
+                            <!-- Component Information -->
+                            <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,15,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="TYPE OF TERMINAL:"/>
+                                    <TextBox x:Name="TerminalTypeTextBox" Margin="0,5,0,0" PlaceholderText="e.g. M3 Lead, Pin Type"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="BATCH NO:"/>
+                                    <TextBox x:Name="BatchNoTextBox" Margin="0,5,0,0" PlaceholderText="Enter batch number"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <!-- Terminal Style and Quantity -->
+                            <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,15,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="TERMINAL STYLE:"/>
+                                    <TextBox x:Name="TerminalStyleTextBox" Margin="0,5,0,0" PlaceholderText="e.g. Standard, Custom"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="QUANTITY:"/>
+                                    <TextBox x:Name="QuantityTextBox" Margin="0,5,0,0" PlaceholderText="e.g. 100"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <!-- New Fields Row 1 -->
+                            <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,15,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="TOTAL LENGTH:"/>
+                                    <TextBox x:Name="NewField1TextBox" Margin="0,5,0,0" PlaceholderText="Enter details for Total Length"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="TOP INSULATOR:"/>
+                                    <TextBox x:Name="NewField2TextBox" Margin="0,5,0,0" PlaceholderText="Enter details for Top Insulator"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <!-- New Fields Row 2 -->
+                            <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,15,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="BOTTOM INSULATOR:"/>
+                                    <TextBox x:Name="NewField3TextBox" Margin="0,5,0,0" PlaceholderText="Enter details for Bottom Insulator"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="SILICON SPACER:"/>
+                                    <TextBox x:Name="NewField4TextBox" Margin="0,5,0,0" PlaceholderText="Enter details for Silicon Spacer"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <!-- Lot Numbers -->
+                            <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,15,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="MGO POWDER LOT NO:"/>
+                                    <TextBox x:Name="MgoPowderLotNoTextBox" Margin="0,5,0,0" PlaceholderText="Enter lot number"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="MGO TUBE:"/>
+                                    <TextBox x:Name="MgoTubeTextBox" Margin="0,5,0,0" PlaceholderText="Enter MGO tube specification"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <!-- MGO Insulator Lot No and Pitch -->
+                            <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,15,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="MGO INSULATOR LOT NO:"/>
+                                    <TextBox x:Name="MgoInsulatorLotNoTextBox" Margin="0,5,0,0" PlaceholderText="Enter insulator lot number"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="PITCH:"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox x:Name="PitchTextBox" Margin="0,5,0,0" IsReadOnly="True" Background="LightGray" PlaceholderText="Auto calculated"/>
+                                        <TextBlock Grid.Column="1" Text="mm" VerticalAlignment="Center" Margin="8,5,8,0"/>
+                                        <Button Grid.Column="2" Width="32" Height="32" Margin="0,5,0,0" Padding="0" Click="EditButton_Click">
+                                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE70F;"/>
+                                        </Button>
+                                    </Grid>
+                                </StackPanel>
+                            </Grid>
+
+                            <!-- Additional Details -->
+                            <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,15,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="SS TUBE GRADE:"/>
+                                    <TextBox x:Name="SsTubeGradeTextBox" Margin="0,5,0,0" PlaceholderText="e.g. SS316, SS304"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="NO OF TURNS:"/>
+                                    <TextBox x:Name="NoOfTurnsTextBox" Margin="0,5,0,0" PlaceholderText="e.g. 25"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <!-- SS Tube Batch No and MGO End Insulators Lot No -->
+                            <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,15,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="SS TUBE BATCH NO:"/>
+                                    <TextBox x:Name="SsTubeBatchNoTextBox" Margin="0,5,0,0" PlaceholderText="Enter tube batch number"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="MGO END INSULATORS LOT NO:"/>
+                                    <TextBox x:Name="MgoEndInsulatorsLotNoTextBox" Margin="0,5,0,0" PlaceholderText="Enter end insulators lot number"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <!-- Resistance Wire Part No and Terminal Wire Lot No -->
+                            <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,15,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="RESISTANCE WIRE PART NO:"/>
+                                    <TextBox x:Name="ResistanceWirePartNoTextBox" Margin="0,5,0,0" PlaceholderText="Enter wire part number"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="TERMINAL WIRE LOT NO:"/>
+                                    <TextBox x:Name="TerminalWireLotNoTextBox" Margin="0,5,0,0" PlaceholderText="Enter terminal wire lot number"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <!-- Resistance Coil Wire -->
+                            <Grid Margin="0,15,0,15">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                
+                                <TextBlock Grid.Row="0" Text="RESISTANCE COIL WIRE (SWG):" Margin="0,0,0,5" />
+                                <Grid Grid.Row="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox x:Name="ResistanceCoilWireTextBox" Grid.Column="0" Margin="0,0,0,0" IsReadOnly="True" Background="LightGray" PlaceholderText="Auto calculated SWG"/>
+                                    <Button Grid.Column="1" Width="32" Height="32" Margin="8,0,0,0" Padding="0" Click="EditButton_Click">
+                                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE70F;"/>
+                                    </Button>
+                                </Grid>
+                            </Grid>
+
+                            <TextBlock Text="JOB INCHARGE:" Margin="0,15,0,0"/>
+                            <TextBox x:Name="JobInchargeTextBox" Margin="0,5,0,0" PlaceholderText="Enter person in charge"/>
+
+                            <Button Content="CREATE"
+                                x:Name="CreateButton"
+                                Width="300"
+                                Height="40"
+                                CornerRadius="5,5,5,5"
+                                HorizontalAlignment="Center"
+                                Margin="0,30,0,40"
+                                Click="CreateButton_Click"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+
+            <!-- Tubular Heater Form -->
+            <Grid x:Name="TubularHeaterForm" Visibility="Collapsed" Margin="0,200,0,0">
+                <Grid CornerRadius="10">
+                    <StackPanel Margin="80,20,80,0">
+                        <!-- Basic Information -->
+                        <StackPanel Margin="135,20,40,0">
+                            <!-- Customer Name -->
+                            <Grid Margin="0,0,0,15">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Row="0" Text="CUSTOMER NAME:" Margin="0,0,0,5" />
+                                <TextBox Grid.Row="1" x:Name="CustomerNameTube" PlaceholderText="Enter customer name" />
+                            </Grid>
+
+                            <!-- Order Number -->
+                            <Grid Margin="0,0,0,15">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Row="0" Text="ORDER NO:" Margin="0,0,0,5" />
+                                <TextBox Grid.Row="1" x:Name="OrderNoTube" PlaceholderText="Enter order number" />
+                            </Grid>
+
+                            <!-- Date and Delivery Date -->
+                            <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,0,0,15">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="DATE:" Margin="0,0,0,5" />
+                                    <DatePicker x:Name="DatePickerTube" HorizontalAlignment="Stretch"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="DELIVERY DATE:" Margin="0,0,0,5" />
+                                    <DatePicker x:Name="DeliveryDateTube" 
+                                              HorizontalAlignment="Stretch"
+                                              MinWidth="120"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <!-- Type of Heater and Tube Dia -->
+                            <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,0,0,15">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="TYPE OF HEATER:"/>
+                                    <TextBox x:Name="HeaterTypeTube" Margin="0,5,0,0" PlaceholderText="e.g. Straight, Coiled"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="TUBE DIA:"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox x:Name="TubeDiaTube" Margin="0,5,0,0" PlaceholderText="e.g. 12.5"/>
+                                        <TextBlock Grid.Column="1" Text="mm" VerticalAlignment="Center" Margin="8,5,0,0"/>
+                                    </Grid>
+                                </StackPanel>
+                            </Grid>
+
+                            <!-- Watts and Volts -->
+                            <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,0,0,15">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="WATTS:"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox x:Name="WattsTube" Margin="0,5,0,0" PlaceholderText="e.g. 500"/>
+                                        <TextBlock Grid.Column="1" Text="W" VerticalAlignment="Center" Margin="8,5,0,0"/>
+                                    </Grid>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="VOLTS:"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox x:Name="VoltsTube" Margin="0,5,0,0" PlaceholderText="e.g. 220"/>
+                                        <TextBlock Grid.Column="1" Text="V" VerticalAlignment="Center" Margin="8,5,0,0"/>
+                                    </Grid>
+                                </StackPanel>
+                            </Grid>
+
+                            <!-- Batch 1 and Grade -->
+                            <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,0,0,15">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="BATCH 1:"/>
+                                    <TextBox x:Name="Batch1Tube" Margin="0,5,0,0" PlaceholderText="Enter batch"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="GRADE:"/>
+                                    <TextBox x:Name="GradeTube" Margin="0,5,0,0" PlaceholderText="e.g. SS316"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <!-- Terminal Pin and Batch 2 -->
+                            <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,0,0,15">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="TERMINAL PIN:"/>
+                                    <TextBox x:Name="TerminalPinTube" Margin="0,5,0,0" PlaceholderText="Enter terminal pin type"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="BATCH 2:"/>
+                                    <TextBox x:Name="Batch2Tube" Margin="0,5,0,0" PlaceholderText="Enter batch 2"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <!-- MGO Powder and Lot No -->
+                            <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,0,0,15">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="MGO POWDER:"/>
+                                    <TextBox x:Name="MgoPowderTube" Margin="0,5,0,0" PlaceholderText="Enter MGO powder type"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="LOT NO:"/>
+                                    <TextBox x:Name="LotNoTube" Margin="0,5,0,0" PlaceholderText="Enter lot number"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <!-- COLD ZONE -->
+                            <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,0,0,15">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="COLD ZONE TOP:"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox x:Name="ColdZoneTopTube" Margin="0,5,0,0" PlaceholderText="Enter top value"/>
+                                        <TextBlock Grid.Column="1" Text="mm" VerticalAlignment="Center" Margin="8,5,0,0"/>
+                                    </Grid>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="COLD ZONE BOTTOM:"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox x:Name="ColdZoneBottomTube" Margin="0,5,0,0" PlaceholderText="Enter bottom value"/>
+                                        <TextBlock Grid.Column="1" Text="mm" VerticalAlignment="Center" Margin="8,5,0,0"/>
+                                    </Grid>
+                                </StackPanel>
+                            </Grid>
+
+                            <!-- Batch No and Dia After Swagging -->
+                            <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,0,0,15">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="BATCH NO:"/>
+                                    <TextBox x:Name="BatchNoTube" Margin="0,5,0,0" PlaceholderText="Enter batch number"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="DIA AFTER SWAGGING:"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox x:Name="DiaAfterSwaggingTube" Margin="0,5,0,0" PlaceholderText="Enter value"/>
+                                        <TextBlock Grid.Column="1" Text="mm" VerticalAlignment="Center" Margin="8,5,0,0"/>
+                                    </Grid>
+                                </StackPanel>
+                            </Grid>
+
+                            <!-- Fill Qty and Ass Qty -->
+                            <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,0,0,15">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="FILL QTY:"/>
+                                    <TextBox x:Name="FillQtyTube" Margin="0,5,0,0" PlaceholderText="Enter fill quantity"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="ASS. QTY:"/>
+                                    <TextBox x:Name="AssQtyTube" Margin="0,5,0,0" PlaceholderText="Enter assembly quantity"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <!-- Wire SWG and Part No -->
+                            <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,0,0,15">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="WIRE(SWG):"/>
+                                    <TextBox x:Name="WireSWGTube" Margin="0,5,0,0" PlaceholderText="Enter wire gauge"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="PART NO:"/>
+                                    <TextBox x:Name="PartNoTube" Margin="0,5,0,0" PlaceholderText="Enter part number"/>
+                                </StackPanel>
+                            </Grid>
+                            
+                            <TextBlock Text="JOB INCHARGE:" Margin="0,15,0,0"/>
+                            <TextBox x:Name="JobInchargeTube" Margin="0,5,0,0" PlaceholderText="Enter person in charge"/>
+
+                            <Button Content="CREATE"
+                                x:Name="CreateButtonTube"
+                                Width="300"
+                                Height="40"
+                                CornerRadius="5,5,5,5"
+                                HorizontalAlignment="Center"
+                                Margin="0,30,0,40"
+                                Click="CreateButton_Click"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+
+            <Grid x:Name="SwaggingForm" Visibility="Collapsed" Margin="0,200,0,0">
+                <Grid CornerRadius="10">
+                    <StackPanel Margin="80,20,80,0">
+                        <!-- Basic Information -->
+                        <StackPanel Margin="135,20,40,0">
+                            <!-- Customer Name -->
+                            <Grid Margin="0,0,0,15">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Row="0" Text="CUSTOMER NAME:" Margin="0,0,0,5" />
+                                <TextBox Grid.Row="1" x:Name="CustomerNameSwag" PlaceholderText="Enter customer name" />
+                            </Grid>
+
+                            <!-- Order Number -->
+                            <Grid Margin="0,0,0,15">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Row="0" Text="ORDER NO:" Margin="0,0,0,5" />
+                                <TextBox Grid.Row="1" x:Name="OrderNoSwag" PlaceholderText="Enter order number" />
+                            </Grid>
+
+                            <!-- Date -->
+                            <Grid Margin="0,0,0,15">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Row="0" Text="DATE:" Margin="0,0,0,5" />
+                                <DatePicker Grid.Row="1" x:Name="DatePickerSwag" />
+                            </Grid>
+
+                            <!-- Row 1: Watts and Volts -->
+                            <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,0,0,15">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="WATTS:"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox x:Name="WattsSwag" Margin="0,5,0,0" PlaceholderText="e.g. 250"/>
+                                        <TextBlock Grid.Column="1" Text="W" VerticalAlignment="Center" Margin="8,5,0,0"/>
+                                    </Grid>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="VOLTS:"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox x:Name="VoltsSwag" Margin="0,5,0,0" PlaceholderText="e.g. 220"/>
+                                        <TextBlock Grid.Column="1" Text="V" VerticalAlignment="Center" Margin="8,5,0,0"/>
+                                    </Grid>
+                                </StackPanel>
+                            </Grid>
+
+                            <!-- Row 2: Batch No and Heater Cross Section -->
+                            <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,0,0,15">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="BATCH NO:"/>
+                                    <TextBox x:Name="BatchNoSwag" Margin="0,5,0,0" PlaceholderText="Enter batch number"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="HEATER CROSS SECTION:"/>
+                                    <TextBox x:Name="HeaterCrossSectionSwag" Margin="0,5,0,0" PlaceholderText="Enter cross section details"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <!-- Row 3: Stretched Length and OHMS -->
+                            <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,0,0,15">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="STRETCHED LENGTH:"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox x:Name="StretchedLengthSwag" Margin="0,5,0,0" PlaceholderText="e.g. 150"/>
+                                        <TextBlock Grid.Column="1" Text="mm" VerticalAlignment="Center" Margin="8,5,0,0"/>
+                                    </Grid>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="OHMS:"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox x:Name="OhmsSwag" Margin="0,5,0,0" PlaceholderText="e.g. 100"/>
+                                        <TextBlock Grid.Column="1" Text="Ω" VerticalAlignment="Center" Margin="8,5,0,0"/>
+                                    </Grid>
+                                </StackPanel>
+                            </Grid>
+
+                            <!-- Row 4: Cold Zone and Terminal Wire Length -->
+                            <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,0,0,15">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="COLD ZONE:"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox x:Name="ColdZoneSwag" Margin="0,5,0,0" PlaceholderText="Enter cold zone value"/>
+                                        <TextBlock Grid.Column="1" Text="mm" VerticalAlignment="Center" Margin="8,5,0,0"/>
+                                    </Grid>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="TERMINAL WIRE LENGTH:"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox x:Name="TerminalWireLengthSwag" Margin="0,5,0,0" PlaceholderText="Enter wire length"/>
+                                        <TextBlock Grid.Column="1" Text="mm" VerticalAlignment="Center" Margin="8,5,0,0"/>
+                                    </Grid>
+                                </StackPanel>
+                            </Grid>
+
+                            <!-- Row 5: Type of Terminal and Quantity -->
+                            <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,0,0,15">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="TYPE OF TERMINAL:"/>
+                                    <TextBox x:Name="TypeOfTerminalSwag" Margin="0,5,0,0" PlaceholderText="e.g. M3 Lead, Pin Type"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="QUANTITY:"/>
+                                    <TextBox x:Name="QuantitySwag" Margin="0,5,0,0" PlaceholderText="e.g. 100"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <!-- Row 6: Wire Color 1 and Property -->
+                            <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,0,0,15">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="WIRE COLOR 1:"/>
+                                    <TextBox x:Name="WireColor1Swag" Margin="0,5,0,0" PlaceholderText="e.g. Red, Blue"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="PROPERTY:"/>
+                                    <TextBox x:Name="Property1Swag" Margin="0,5,0,0" PlaceholderText="Enter property details"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <!-- Row 7: Wire Color 2 and Property -->
+                            <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,0,0,15">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="WIRE COLOR 2:"/>
+                                    <TextBox x:Name="WireColor2Swag" Margin="0,5,0,0" PlaceholderText="e.g. Green, Yellow"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="PROPERTY:"/>
+                                    <TextBox x:Name="Property2Swag" Margin="0,5,0,0" PlaceholderText="Enter property details"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <TextBlock Text="JOB INCHARGE:" Margin="0,15,0,0"/>
+                            <TextBox x:Name="JobInchargeSwag" Margin="0,5,0,0" PlaceholderText="Enter person in charge"/>
+
+                            <Button Content="CREATE"
+                                x:Name="CreateButtonSwag"
+                                Width="300"
+                                Height="40"
+                                CornerRadius="5,5,5,5"
+                                HorizontalAlignment="Center"
+                                Margin="0,30,0,40"
+                                Click="CreateButton_Click"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+</UserControl>
