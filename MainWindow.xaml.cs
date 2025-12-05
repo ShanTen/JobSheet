@@ -6,6 +6,8 @@ using System.Runtime.InteropServices;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Composition.SystemBackdrops;
 using WinRT;
+using Microsoft.UI.Windowing;
+using WinRT.Interop;
 
 namespace Work_winui_
 {
@@ -82,6 +84,8 @@ namespace Work_winui_
             SubClassDelegate = new SUBCLASSPROC(WindowSubClass);
             Win32.SetWindowSubclass(_hWnd, SubClassDelegate, 0, 0);
 
+            // Note: skipping AppWindow title bar update via Win32Interop here to avoid platform-specific interop issues.
+
             this.Closed += MainWindow_Closed;
 
             if (ContentFrame != null)
@@ -90,6 +94,38 @@ namespace Work_winui_
             }
 
             sideBar.NavigationItemInvoked += SideBar_NavigationItemInvoked;
+        }
+
+        private void UpdateTitleBarColors(AppWindowTitleBar titleBar)
+        {
+            if (titleBar == null) return;
+
+            // Determine current theme from root content
+            var theme = ((FrameworkElement)this.Content).ActualTheme;
+
+            if (theme == ElementTheme.Dark)
+            {
+                titleBar.BackgroundColor = Microsoft.UI.Colors.Transparent;
+                titleBar.ForegroundColor = Microsoft.UI.Colors.White;
+                titleBar.ButtonBackgroundColor = Microsoft.UI.Colors.Transparent;
+                titleBar.ButtonForegroundColor = Microsoft.UI.Colors.White;
+                titleBar.ButtonHoverBackgroundColor = Microsoft.UI.ColorHelper.FromArgb(30, 255, 255, 255);
+                titleBar.ButtonHoverForegroundColor = Microsoft.UI.Colors.White;
+                titleBar.ButtonPressedBackgroundColor = Microsoft.UI.ColorHelper.FromArgb(60, 255, 255, 255);
+                titleBar.ButtonPressedForegroundColor = Microsoft.UI.Colors.White;
+            }
+            else
+            {
+                // Light or Default
+                titleBar.BackgroundColor = Microsoft.UI.Colors.Transparent;
+                titleBar.ForegroundColor = Microsoft.UI.Colors.Black;
+                titleBar.ButtonBackgroundColor = Microsoft.UI.Colors.Transparent;
+                titleBar.ButtonForegroundColor = Microsoft.UI.Colors.Black;
+                titleBar.ButtonHoverBackgroundColor = Microsoft.UI.ColorHelper.FromArgb(30, 0, 0, 0);
+                titleBar.ButtonHoverForegroundColor = Microsoft.UI.Colors.Black;
+                titleBar.ButtonPressedBackgroundColor = Microsoft.UI.ColorHelper.FromArgb(60, 0, 0, 0);
+                titleBar.ButtonPressedForegroundColor = Microsoft.UI.Colors.Black;
+            }
         }
 
         bool TrySetMicaBackdrop()
@@ -194,37 +230,37 @@ namespace Work_winui_
                 ContentFrame.Content = page;
             }
         }
-    }
 
-    class WindowsSystemDispatcherQueueHelper
-    {
-        [StructLayout(LayoutKind.Sequential)]
-        struct DispatcherQueueOptions
+        class WindowsSystemDispatcherQueueHelper
         {
-            internal int dwSize;
-            internal int threadType;
-            internal int apartmentType;
-        }
-
-        [DllImport("CoreMessaging.dll")]
-        private static extern int CreateDispatcherQueueController([In] DispatcherQueueOptions options, [In, Out, MarshalAs(UnmanagedType.IUnknown)] ref object dispatcherQueueController);
-
-        object m_dispatcherQueueController = null;
-        public void EnsureWindowsSystemDispatcherQueueController()
-        {
-            if (Windows.System.DispatcherQueue.GetForCurrentThread() != null)
+            [StructLayout(LayoutKind.Sequential)]
+            struct DispatcherQueueOptions
             {
-                return;
+                internal int dwSize;
+                internal int threadType;
+                internal int apartmentType;
             }
 
-            if (m_dispatcherQueueController == null)
-            {
-                DispatcherQueueOptions options;
-                options.dwSize = Marshal.SizeOf(typeof(DispatcherQueueOptions));
-                options.threadType = 2;    // DQTYPE_THREAD_CURRENT
-                options.apartmentType = 2; // DQTAT_COM_STA
+            [DllImport("CoreMessaging.dll")]
+            private static extern int CreateDispatcherQueueController([In] DispatcherQueueOptions options, [In, Out, MarshalAs(UnmanagedType.IUnknown)] ref object dispatcherQueueController);
 
-                CreateDispatcherQueueController(options, ref m_dispatcherQueueController);
+            object m_dispatcherQueueController = null;
+            public void EnsureWindowsSystemDispatcherQueueController()
+            {
+                if (Windows.System.DispatcherQueue.GetForCurrentThread() != null)
+                {
+                    return;
+                }
+
+                if (m_dispatcherQueueController == null)
+                {
+                    DispatcherQueueOptions options;
+                    options.dwSize = Marshal.SizeOf(typeof(DispatcherQueueOptions));
+                    options.threadType = 2;    // DQTYPE_THREAD_CURRENT
+                    options.apartmentType = 2; // DQTAT_COM_STA
+
+                    CreateDispatcherQueueController(options, ref m_dispatcherQueueController);
+                }
             }
         }
     }
