@@ -27,11 +27,13 @@
                     <ComboBox x:Name="HeaterTypeComboBox"
                             Width="300"
                             PlaceholderText="SELECT HEATER TYPE"
-                            SelectionChanged="HeaterTypeComboBox_SelectionChanged">
+                            SelectionChanged="HeaterTypeComboBox_SelectionChanged"
+                            SelectedIndex="0"  
+                              >
                         <ComboBoxItem Content="SELECT"/>
                         <ComboBoxItem Content="HIGH DENSITY CARTRIDGE HEATER"/>
-                        <ComboBoxItem Content="TUBULAR HEATER"/>
-                        <ComboBoxItem Content="SWAGGING TO FINISHING"/>
+                        <!--<ComboBoxItem Content="TUBULAR HEATER"/>
+                        <ComboBoxItem Content="SWAGGING TO FINISHING"/>-->
                     </ComboBox>
                 </StackPanel>
             </StackPanel>
@@ -156,7 +158,7 @@
                                             <ColumnDefinition Width="Auto"/>
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
-                                        <TextBox x:Name="DiameterAfterProcessTextBox" Margin="0,5,0,0" IsReadOnly="True" Background="LightGray" PlaceholderText="Auto calculated"/>
+                                        <TextBox x:Name="DiameterAfterProcessTextBox" Margin="0,5,0,0" IsReadOnly="True"  PlaceholderText="Auto calculated"/>
                                         <TextBlock Grid.Column="1" Text="mm" VerticalAlignment="Center" Margin="8,5,8,0"/>
                                         <Button Grid.Column="2" Width="32" Height="32" Margin="0,5,0,0" Padding="0" Click="EditButton_Click">
                                             <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE70F;"/>
@@ -172,7 +174,7 @@
                                             <ColumnDefinition Width="Auto"/>
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
-                                        <TextBox x:Name="TubeDiameterTextBox" Margin="0,5,0,0" IsReadOnly="True" Background="LightGray" PlaceholderText="Auto calculated"/>
+                                        <TextBox x:Name="TubeDiameterTextBox" Margin="0,5,0,0" IsReadOnly="True" PlaceholderText="Auto calculated"/>
                                         <TextBlock Grid.Column="1" Text="mm" VerticalAlignment="Center" Margin="8,5,8,0"/>
                                         <Button Grid.Column="2" Width="32" Height="32" Margin="0,5,0,0" Padding="0" Click="EditButton_Click">
                                             <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE70F;"/>
@@ -196,7 +198,7 @@
                                             <ColumnDefinition Width="Auto"/>
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
-                                        <TextBox x:Name="DiameterAfterMachiningTextBox" Margin="0,5,0,0" IsReadOnly="True" Background="LightGray" PlaceholderText="Auto calculated"/>
+                                        <TextBox x:Name="DiameterAfterMachiningTextBox" Margin="0,5,0,0" IsReadOnly="True" PlaceholderText="Auto calculated"/>
                                         <TextBlock Grid.Column="1" Text="mm" VerticalAlignment="Center" Margin="8,5,8,0"/>
                                         <Button Grid.Column="2" Width="32" Height="32" Margin="0,5,0,0" Padding="0" Click="EditButton_Click">
                                             <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE70F;"/>
@@ -212,7 +214,7 @@
                                             <ColumnDefinition Width="Auto"/>
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
-                                        <TextBox x:Name="TubeThicknessTextBox" Margin="0,5,0,0" IsReadOnly="True" Background="LightGray" PlaceholderText="Auto calculated"/>
+                                        <TextBox x:Name="TubeThicknessTextBox" Margin="0,5,0,0" IsReadOnly="True" PlaceholderText="Auto calculated"/>
                                         <TextBlock Grid.Column="1" Text="mm" VerticalAlignment="Center" Margin="8,5,8,0"/>
                                         <Button Grid.Column="2" Width="32" Height="32" Margin="0,5,0,0" Padding="0" Click="EditButton_Click">
                                             <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE70F;"/>
@@ -331,7 +333,7 @@
                                             <ColumnDefinition Width="Auto"/>
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
-                                        <TextBox x:Name="PitchTextBox" Margin="0,5,0,0" IsReadOnly="True" Background="LightGray" PlaceholderText="Auto calculated"/>
+                                        <TextBox x:Name="PitchTextBox" Margin="0,5,0,0" IsReadOnly="True"  PlaceholderText="Auto calculated"/>
                                         <TextBlock Grid.Column="1" Text="mm" VerticalAlignment="Center" Margin="8,5,8,0"/>
                                         <Button Grid.Column="2" Width="32" Height="32" Margin="0,5,0,0" Padding="0" Click="EditButton_Click">
                                             <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE70F;"/>
@@ -407,7 +409,7 @@
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBox x:Name="ResistanceCoilWireTextBox" Grid.Column="0" Margin="0,0,0,0" IsReadOnly="True" Background="LightGray" PlaceholderText="Auto calculated SWG"/>
+                                    <TextBox x:Name="ResistanceCoilWireTextBox" Grid.Column="0" Margin="0,0,0,0" IsReadOnly="True"   PlaceholderText="Auto calculated SWG"/>
                                     <Button Grid.Column="1" Width="32" Height="32" Margin="8,0,0,0" Padding="0" Click="EditButton_Click">
                                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE70F;"/>
                                     </Button>
@@ -430,13 +432,13 @@
                 </Grid>
             </Grid>
 
-            <!-- Tubular Heater Form -->
+            <!-- Tubular Heater Form --><!--
             <Grid x:Name="TubularHeaterForm" Visibility="Collapsed" Margin="0,200,0,0">
                 <Grid CornerRadius="10">
                     <StackPanel Margin="80,20,80,0">
-                        <!-- Basic Information -->
+                        --><!-- Basic Information --><!--
                         <StackPanel Margin="135,20,40,0">
-                            <!-- Customer Name -->
+                            --><!-- Customer Name --><!--
                             <Grid Margin="0,0,0,15">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
@@ -447,7 +449,7 @@
                                 <TextBox Grid.Row="1" x:Name="CustomerNameTube" PlaceholderText="Enter customer name" />
                             </Grid>
 
-                            <!-- Order Number -->
+                            --><!-- Order Number --><!--
                             <Grid Margin="0,0,0,15">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
@@ -458,7 +460,7 @@
                                 <TextBox Grid.Row="1" x:Name="OrderNoTube" PlaceholderText="Enter order number" />
                             </Grid>
 
-                            <!-- Date and Delivery Date -->
+                            --><!-- Date and Delivery Date --><!--
                             <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,0,0,15">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -478,7 +480,7 @@
                                 </StackPanel>
                             </Grid>
 
-                            <!-- Type of Heater and Tube Dia -->
+                            --><!-- Type of Heater and Tube Dia --><!--
                             <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,0,0,15">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -503,7 +505,7 @@
                                 </StackPanel>
                             </Grid>
 
-                            <!-- Watts and Volts -->
+                            --><!-- Watts and Volts --><!--
                             <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,0,0,15">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -535,7 +537,7 @@
                                 </StackPanel>
                             </Grid>
 
-                            <!-- Batch 1 and Grade -->
+                            --><!-- Batch 1 and Grade --><!--
                             <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,0,0,15">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -553,7 +555,7 @@
                                 </StackPanel>
                             </Grid>
 
-                            <!-- Terminal Pin and Batch 2 -->
+                            --><!-- Terminal Pin and Batch 2 --><!--
                             <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,0,0,15">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -571,7 +573,7 @@
                                 </StackPanel>
                             </Grid>
 
-                            <!-- MGO Powder and Lot No -->
+                            --><!-- MGO Powder and Lot No --><!--
                             <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,0,0,15">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -589,7 +591,7 @@
                                 </StackPanel>
                             </Grid>
 
-                            <!-- COLD ZONE -->
+                            --><!-- COLD ZONE --><!--
                             <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,0,0,15">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -621,7 +623,7 @@
                                 </StackPanel>
                             </Grid>
 
-                            <!-- Batch No and Dia After Swagging -->
+                            --><!-- Batch No and Dia After Swagging --><!--
                             <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,0,0,15">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -646,7 +648,7 @@
                                 </StackPanel>
                             </Grid>
 
-                            <!-- Fill Qty and Ass Qty -->
+                            --><!-- Fill Qty and Ass Qty --><!--
                             <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,0,0,15">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -664,7 +666,7 @@
                                 </StackPanel>
                             </Grid>
 
-                            <!-- Wire SWG and Part No -->
+                            --><!-- Wire SWG and Part No --><!--
                             <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,0,0,15">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -701,9 +703,9 @@
             <Grid x:Name="SwaggingForm" Visibility="Collapsed" Margin="0,200,0,0">
                 <Grid CornerRadius="10">
                     <StackPanel Margin="80,20,80,0">
-                        <!-- Basic Information -->
+                        --><!-- Basic Information --><!--
                         <StackPanel Margin="135,20,40,0">
-                            <!-- Customer Name -->
+                            --><!-- Customer Name --><!--
                             <Grid Margin="0,0,0,15">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
@@ -714,7 +716,7 @@
                                 <TextBox Grid.Row="1" x:Name="CustomerNameSwag" PlaceholderText="Enter customer name" />
                             </Grid>
 
-                            <!-- Order Number -->
+                            --><!-- Order Number --><!--
                             <Grid Margin="0,0,0,15">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
@@ -725,7 +727,7 @@
                                 <TextBox Grid.Row="1" x:Name="OrderNoSwag" PlaceholderText="Enter order number" />
                             </Grid>
 
-                            <!-- Date -->
+                            --><!-- Date --><!--
                             <Grid Margin="0,0,0,15">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
@@ -736,7 +738,7 @@
                                 <DatePicker Grid.Row="1" x:Name="DatePickerSwag" />
                             </Grid>
 
-                            <!-- Row 1: Watts and Volts -->
+                            --><!-- Row 1: Watts and Volts --><!--
                             <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,0,0,15">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -768,7 +770,7 @@
                                 </StackPanel>
                             </Grid>
 
-                            <!-- Row 2: Batch No and Heater Cross Section -->
+                            --><!-- Row 2: Batch No and Heater Cross Section --><!--
                             <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,0,0,15">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -786,7 +788,7 @@
                                 </StackPanel>
                             </Grid>
 
-                            <!-- Row 3: Stretched Length and OHMS -->
+                            --><!-- Row 3: Stretched Length and OHMS --><!--
                             <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,0,0,15">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -818,7 +820,7 @@
                                 </StackPanel>
                             </Grid>
 
-                            <!-- Row 4: Cold Zone and Terminal Wire Length -->
+                            --><!-- Row 4: Cold Zone and Terminal Wire Length --><!--
                             <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,0,0,15">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -850,7 +852,7 @@
                                 </StackPanel>
                             </Grid>
 
-                            <!-- Row 5: Type of Terminal and Quantity -->
+                            --><!-- Row 5: Type of Terminal and Quantity --><!--
                             <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,0,0,15">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -868,7 +870,7 @@
                                 </StackPanel>
                             </Grid>
 
-                            <!-- Row 6: Wire Color 1 and Property -->
+                            --><!-- Row 6: Wire Color 1 and Property --><!--
                             <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,0,0,15">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -886,7 +888,7 @@
                                 </StackPanel>
                             </Grid>
 
-                            <!-- Row 7: Wire Color 2 and Property -->
+                            --><!-- Row 7: Wire Color 2 and Property --><!--
                             <Grid ColumnSpacing="20" RowSpacing="15" Margin="0,0,0,15">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -919,7 +921,7 @@
                     </StackPanel>
                 </Grid>
 
-            </Grid>
+            </Grid>-->
         </Grid>
     </ScrollViewer>
 </UserControl>
