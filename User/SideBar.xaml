@@ -11,13 +11,12 @@
         PaneDisplayMode="Left" 
         IsPaneOpen="True" 
         IsPaneToggleButtonVisible="False"
-        Background="Transparent">
+        Background="Transparent"
+        IsSettingsVisible="True">
         <NavigationView.MenuItems>
-            <NavigationViewItem Icon="Home" Content="HOME" Tag="Homepage" />
-            <!--<NavigationViewItemHeader Content="JOBSHEET"/>-->
-            <NavigationViewItem Icon="Edit" Content="GENERATE" Tag="Generate"/>
-<!--            <NavigationViewItem Icon="Upload" Content="UPLOAD" Tag="Uploadpage" Margin="20,0,0,0" /> -->
-<!--            <NavigationViewItem Icon="Find" Content="SEARCH" Tag="Searchpage" Margin="20,0,0,0" /> -->
+            <NavigationViewItem Icon="Home" Content="Home" Tag="Homepage" />
+            <NavigationViewItem Icon="Edit" Content="Generate" Tag="Generate"/>
+            <NavigationViewItem Icon="Calculator" Content="Calculate"/>
         </NavigationView.MenuItems>
     </NavigationView>
 </UserControl>

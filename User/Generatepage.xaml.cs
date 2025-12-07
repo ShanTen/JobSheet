@@ -1,12 +1,13 @@
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Media;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Media;
 
 namespace Work_winui_.User
 {
@@ -26,6 +27,7 @@ namespace Work_winui_.User
             //DatePickerTube.Date = DateTime.Today;
             //DeliveryDateTube.Date = DateTime.Today;
             //DatePickerSwag.Date = DateTime.Today;
+            HeaterTypeComboBox.AddHandler(PointerWheelChangedEvent, new PointerEventHandler(OnPointerWheelChangedSuppressScroll), true);
         }
 
         private void EnsureExportDirectoryExists()
@@ -71,6 +73,12 @@ namespace Work_winui_.User
                     //    break;
                 }
             }
+        }
+
+        private void OnPointerWheelChangedSuppressScroll(object sender, PointerRoutedEventArgs e)
+        {
+            // Set Handled to true to prevent the scroll event from propagating to the control's selection logic
+            e.Handled = true;
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)

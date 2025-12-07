@@ -10,7 +10,7 @@
     Background="{ThemeResource LayerFillColorDefaultBrush}">
 
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalAlignment="Center">
-        <StackPanel Padding="40,20,40,40" MaxWidth="1400" HorizontalAlignment="Center">
+        <StackPanel Padding="40,20,40,40" MaxWidth="1400" MinWidth="1000" HorizontalAlignment="Center">
             <!-- Header Section -->
             <TextBlock Text="Create New Jobsheet" 
                        FontSize="28" 
@@ -43,7 +43,8 @@
                               SelectionChanged="HeaterTypeComboBox_SelectionChanged"
                               SelectedIndex="0"
                               HorizontalAlignment="Stretch"
-                              MinWidth="300">
+                              MinWidth="300"
+                              PointerWheelChanged="OnPointerWheelChangedSuppressScroll">
                         <ComboBoxItem Content="SELECT"/>
                         <ComboBoxItem Content="HIGH DENSITY CARTRIDGE HEATER"/>
                     </ComboBox>
