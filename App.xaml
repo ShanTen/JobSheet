@@ -3,8 +3,7 @@
     x:Class="Work_winui_.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Work_winui_"
-    RequestedTheme="Light">
+    xmlns:local="using:Work_winui_">
 
     <Application.Resources>
         <ResourceDictionary>

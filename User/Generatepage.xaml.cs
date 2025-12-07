@@ -75,7 +75,8 @@ namespace Work_winui_.User
                 if (textBox != null)
                 {
                     textBox.IsReadOnly = false;
-                    textBox.Background = null;
+                    // Clear any locally-set Background so theme resource applies
+                    textBox.ClearValue(Control.BackgroundProperty);
                     textBox.Focus(FocusState.Programmatic);
                 }
             }
@@ -522,7 +523,8 @@ namespace Work_winui_.User
                 if (textBox != null)
                 {
                     textBox.IsReadOnly = true;
-                    textBox.Background = new SolidColorBrush(Microsoft.UI.Colors.LightGray);
+                    // Clear local Background value so theme resources are used instead of forcing LightGray
+                    textBox.ClearValue(Control.BackgroundProperty);
                 }
             }
             
