@@ -17,12 +17,12 @@
         </Grid.RowDefinitions>
 
         <!-- Header Section -->
-        <StackPanel Grid.Row="0" Margin="40,20,40,0">
-            <TextBlock Text="UPLOAD JOBSHEET" 
-                     FontSize="32" 
+        <StackPanel Grid.Row="0" Margin="40,20,40,40">
+            <TextBlock Text="Upload Jobsheet" 
+                     FontSize="28" 
                      FontWeight="SemiBold"
                      HorizontalAlignment="Left"
-                     Margin="0,0,0,30"/>
+                     Margin="0,0,0,10"/>
                      
             <!-- Heater Type Selection -->
             <StackPanel HorizontalAlignment="Center" Margin="0,0,0,30">
@@ -34,9 +34,7 @@
                         PlaceholderText="SELECT HEATER TYPE"
                         SelectionChanged="HeaterTypeComboBox_SelectionChanged">
                     <ComboBoxItem Content="SELECT"/>
-                    <ComboBoxItem Content="HIGH DENSITY CARTRIDGE HEATER"/>
-                    <ComboBoxItem Content="TUBULAR HEATER"/>
-                        <ComboBoxItem Content="SWAGGING TO FINISHING"/>
+                        <ComboBoxItem Content="HIGH DENSITY CARTRIDGE HEATER"/>
                     </ComboBox>
             </StackPanel>
         </StackPanel>

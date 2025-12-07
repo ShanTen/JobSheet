@@ -18,6 +18,7 @@
 		<None Remove="User\Searchpage.xaml" />
 		<None Remove="User\SideBar.xaml" />
 		<None Remove="User\Uploadpage.xaml" />
+		<None Remove="User\Settings.xaml" />
 	</ItemGroup>
 	<ItemGroup>
   			<FrameworkReference Include="Microsoft.AspNetCore.App" />
@@ -73,6 +74,11 @@
 	</ItemGroup>
 	<ItemGroup>
 		<Page Update="User\SideBar.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+	</ItemGroup>
+	<ItemGroup>
+		<Page Update="User\Settings.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 	</ItemGroup>

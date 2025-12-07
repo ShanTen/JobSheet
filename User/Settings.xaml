@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl
+    x:Class="Work_winui_.User.Settings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Work_winui_.User"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Padding="40,20,40,40" MaxWidth="1400">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Header -->
+            <TextBlock Grid.Row="0" 
+                       Text="Settings Page" 
+                       FontSize="28" 
+                       FontWeight="SemiBold"
+                       Margin="0,0,0,30"/>
+
+            <!-- Upload Settings Section -->
+            <Border Grid.Row="1" 
+                    Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                    BorderThickness="1"
+                    CornerRadius="8"
+                    Padding="30"
+                    Margin="0,0,0,20">
+                <StackPanel>
+                    <TextBlock Text="Upload Settings" 
+                               FontSize="18" 
+                               FontWeight="SemiBold"
+                               Margin="0,0,0,20"/>
+
+                    <!-- Endpoints -->
+                    <TextBlock Text="Endpoints" 
+                               Margin="0,0,0,8"/>
+                    <TextBox x:Name="EndpointsTextBox"
+                             PlaceholderText="https://api.example.com/endpoint"
+                             Width="430"
+                             HorizontalAlignment="Left"
+                             Margin="0,0,0,20"/>
+
+                    <!-- Api Key -->
+                    <TextBlock Text="Api Key" 
+                               Margin="0,0,0,8"/>
+                    <PasswordBox x:Name="ApiKeyPasswordBox"
+                                 PlaceholderText="Enter API Key"
+                                 Width="430"
+                                 HorizontalAlignment="Left"
+                                 Margin="0,0,0,20"/>
+
+                    <!-- Credentials - Username -->
+                    <TextBlock Text="Credentials" 
+                               Margin="0,0,0,8"/>
+                    <TextBox x:Name="UsernameTextBox"
+                             PlaceholderText="Username"
+                             Width="430"
+                             HorizontalAlignment="Left"
+                             Margin="0,0,0,15"/>
+                    
+                    <!-- Credentials - Password -->
+                    <PasswordBox x:Name="CredentialsPasswordBox"
+                                 PlaceholderText="Password"
+                                 Width="430"
+                                 HorizontalAlignment="Left"
+                                 Margin="0,0,0,0"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Formula Settings Section -->
+            <Border Grid.Row="2" 
+                    Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                    BorderThickness="1"
+                    CornerRadius="8"
+                    Padding="30">
+                <StackPanel>
+                    <TextBlock Text="Formula Settings" 
+                               FontSize="18" 
+                               FontWeight="SemiBold"
+                               Margin="0,0,0,20"/>
+
+                    <!-- Password for the formulae -->
+                    <TextBlock Text="Password for the formulae" 
+                               Margin="0,0,0,8"/>
+                    <PasswordBox x:Name="FormulaPasswordBox"
+                                 PlaceholderText="Enter password"
+                                 Width="430"
+                                 HorizontalAlignment="Left"
+                                 Margin="0,0,0,30"/>
+
+                    <!-- Action Buttons -->
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="SaveChangesButton"
+                                Content="Save Changes"
+                                Style="{StaticResource AccentButtonStyle}"
+                                Click="SaveChangesButton_Click"
+                                Padding="20,8"
+                                Margin="0,0,10,0"/>
+                        
+                        <Button x:Name="CancelButton"
+                                Content="Cancel"
+                                Click="CancelButton_Click"
+                                Padding="20,8"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

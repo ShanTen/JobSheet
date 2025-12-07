@@ -35,9 +35,9 @@ namespace Work_winui_.User
                     case "HIGH DENSITY CARTRIDGE HEATER":
                         CartridgeHeaterForm.Visibility = Visibility.Visible;
                         break;
-                    case "TUBULAR HEATER":
-                        TubularHeaterForm.Visibility = Visibility.Visible;
-                       break;
+                    //case "TUBULAR HEATER":
+                    //    TubularHeaterForm.Visibility = Visibility.Visible;
+                    //   break;
                     //case "MICA BAND HEATER":
                        // MicaBandHeaterForm.Visibility = Visibility.Visible;
                        // break;

@@ -84,7 +84,9 @@ namespace Work_winui_
             SubClassDelegate = new SUBCLASSPROC(WindowSubClass);
             Win32.SetWindowSubclass(_hWnd, SubClassDelegate, 0, 0);
 
-            // Note: skipping AppWindow title bar update via Win32Interop here to avoid platform-specific interop issues.
+            // Initialize titlebar colors
+            var appWindow = GetAppWindowForCurrentWindow();
+            if (appWindow != null)
 
             this.Closed += MainWindow_Closed;
 
@@ -96,37 +98,52 @@ namespace Work_winui_
             sideBar.NavigationItemInvoked += SideBar_NavigationItemInvoked;
         }
 
-        private void UpdateTitleBarColors(AppWindowTitleBar titleBar)
-        {
-            if (titleBar == null) return;
+        //private void UpdateTitleBarColors(AppWindowTitleBar titleBar)
+        //{
+        //    if (titleBar == null) return;
 
-            // Determine current theme from root content
-            var theme = ((FrameworkElement)this.Content).ActualTheme;
+        //    // Determine current theme from root content
+        //    var theme = ((FrameworkElement)this.Content).ActualTheme;
 
-            if (theme == ElementTheme.Dark)
-            {
-                titleBar.BackgroundColor = Microsoft.UI.Colors.Transparent;
-                titleBar.ForegroundColor = Microsoft.UI.Colors.White;
-                titleBar.ButtonBackgroundColor = Microsoft.UI.Colors.Transparent;
-                titleBar.ButtonForegroundColor = Microsoft.UI.Colors.White;
-                titleBar.ButtonHoverBackgroundColor = Microsoft.UI.ColorHelper.FromArgb(30, 255, 255, 255);
-                titleBar.ButtonHoverForegroundColor = Microsoft.UI.Colors.White;
-                titleBar.ButtonPressedBackgroundColor = Microsoft.UI.ColorHelper.FromArgb(60, 255, 255, 255);
-                titleBar.ButtonPressedForegroundColor = Microsoft.UI.Colors.White;
-            }
-            else
-            {
-                // Light or Default
-                titleBar.BackgroundColor = Microsoft.UI.Colors.Transparent;
-                titleBar.ForegroundColor = Microsoft.UI.Colors.Black;
-                titleBar.ButtonBackgroundColor = Microsoft.UI.Colors.Transparent;
-                titleBar.ButtonForegroundColor = Microsoft.UI.Colors.Black;
-                titleBar.ButtonHoverBackgroundColor = Microsoft.UI.ColorHelper.FromArgb(30, 0, 0, 0);
-                titleBar.ButtonHoverForegroundColor = Microsoft.UI.Colors.Black;
-                titleBar.ButtonPressedBackgroundColor = Microsoft.UI.ColorHelper.FromArgb(60, 0, 0, 0);
-                titleBar.ButtonPressedForegroundColor = Microsoft.UI.Colors.Black;
-            }
-        }
+        //    if (theme == ElementTheme.Dark)
+        //    {
+        //        // Dark theme colors
+        //        titleBar.BackgroundColor = Microsoft.UI.Colors.Transparent;
+        //        titleBar.ForegroundColor = Microsoft.UI.Colors.White;
+        //        titleBar.InactiveBackgroundColor = Microsoft.UI.Colors.Transparent;
+        //        titleBar.InactiveForegroundColor = Microsoft.UI.Colors.White;
+                
+        //        titleBar.ButtonBackgroundColor = Microsoft.UI.Colors.Transparent;
+        //        titleBar.ButtonForegroundColor = Microsoft.UI.Colors.White;
+        //        titleBar.ButtonInactiveBackgroundColor = Microsoft.UI.Colors.Transparent;
+        //        titleBar.ButtonInactiveForegroundColor = Microsoft.UI.Colors.White;
+                
+        //        titleBar.ButtonHoverBackgroundColor = Windows.UI.Color.FromArgb(0x10, 0xFF, 0xFF, 0xFF);
+        //        titleBar.ButtonHoverForegroundColor = Microsoft.UI.Colors.White;
+                
+        //        titleBar.ButtonPressedBackgroundColor = Windows.UI.Color.FromArgb(0x20, 0xFF, 0xFF, 0xFF);
+        //        titleBar.ButtonPressedForegroundColor = Microsoft.UI.Colors.White;
+        //    }
+        //    else
+        //    {
+        //        // Light theme colors
+        //        titleBar.BackgroundColor = Microsoft.UI.Colors.Transparent;
+        //        titleBar.ForegroundColor = Microsoft.UI.Colors.Black;
+        //        titleBar.InactiveBackgroundColor = Microsoft.UI.Colors.Transparent;
+        //        titleBar.InactiveForegroundColor = Microsoft.UI.Colors.Black;
+                
+        //        titleBar.ButtonBackgroundColor = Microsoft.UI.Colors.Transparent;
+        //        titleBar.ButtonForegroundColor = Microsoft.UI.Colors.Black;
+        //        titleBar.ButtonInactiveBackgroundColor = Microsoft.UI.Colors.Transparent;
+        //        titleBar.ButtonInactiveForegroundColor = Microsoft.UI.Colors.Black;
+                
+        //        titleBar.ButtonHoverBackgroundColor = Windows.UI.Color.FromArgb(0x10, 0x00, 0x00, 0x00);
+        //        titleBar.ButtonHoverForegroundColor = Microsoft.UI.Colors.Black;
+                
+        //        titleBar.ButtonPressedBackgroundColor = Windows.UI.Color.FromArgb(0x20, 0x00, 0x00, 0x00);
+        //        titleBar.ButtonPressedForegroundColor = Microsoft.UI.Colors.Black;
+        //    }
+        //}
 
         bool TrySetMicaBackdrop()
         {
@@ -178,6 +195,7 @@ namespace Work_winui_
             {
                 SetConfigurationSourceTheme();
             }
+            // Update titlebar colors when theme changes
         }
 
         private void SetConfigurationSourceTheme()
@@ -223,12 +241,29 @@ namespace Work_winui_
                 case "Searchpage":
                     page = new Searchpage();
                     break;
+                case "Settings":
+                    page = new Settings();
+                    break;
+
             }
 
             if (page != null && ContentFrame != null)
             {
                 ContentFrame.Content = page;
             }
+        }
+
+        // Add this method to MainWindow class to fix CS0103
+        private AppWindow? GetAppWindowForCurrentWindow()
+        {
+            IntPtr hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
+            if (hWnd == IntPtr.Zero)
+            {
+                return null;
+            }
+            return AppWindow.GetFromWindowId(
+                Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hWnd)
+            );
         }
 
         class WindowsSystemDispatcherQueueHelper
