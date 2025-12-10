@@ -2,11 +2,16 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Windows.Storage;
+using Windows.Security.Credentials;
 
 namespace Work_winui_.User
 {
     public sealed partial class Settings : UserControl
     {
+        private const string CredentialResourceFtp = "Work_WinUI_FtpPassword";
+        private const string CredentialResourceFormula = "Work_WinUI_FormulaPassword";
+        private const string DefaultUsername = "User";
+
         public Settings()
         {
             this.InitializeComponent();
@@ -18,6 +23,7 @@ namespace Work_winui_.User
             try
             {
                 var localSettings = ApplicationData.Current.LocalSettings;
+                var vault = new PasswordVault();
 
                 // Load saved settings
                 if (localSettings.Values.ContainsKey("Endpoints"))
@@ -35,14 +41,30 @@ namespace Work_winui_.User
                     UsernameTextBox.Text = localSettings.Values["FtpUsername"] as string;
                 }
 
-                if (localSettings.Values.ContainsKey("FtpPassword"))
+                // Load FTP password from Credential Locker
+                try
                 {
-                    CredentialsPasswordBox.Password = localSettings.Values["FtpPassword"] as string;
+                    var ftpCredential = vault.Retrieve(CredentialResourceFtp, DefaultUsername);
+                    ftpCredential.RetrievePassword();
+                    CredentialsPasswordBox.Password = ftpCredential.Password;
+                }
+                catch (Exception)
+                {
+                    // Credential not found or error retrieving - leave password box empty
+                    CredentialsPasswordBox.Password = string.Empty;
                 }
 
-                if (localSettings.Values.ContainsKey("FormulaPassword"))
+                // Load Formula password from Credential Locker
+                try
                 {
-                    FormulaPasswordBox.Password = localSettings.Values["FormulaPassword"] as string;
+                    var formulaCredential = vault.Retrieve(CredentialResourceFormula, DefaultUsername);
+                    formulaCredential.RetrievePassword();
+                    FormulaPasswordBox.Password = formulaCredential.Password;
+                }
+                catch (Exception)
+                {
+                    // Credential not found or error retrieving - leave password box empty
+                    FormulaPasswordBox.Password = string.Empty;
                 }
             }
             catch (Exception ex)
@@ -57,13 +79,56 @@ namespace Work_winui_.User
             try
             {
                 var localSettings = ApplicationData.Current.LocalSettings;
+                var vault = new PasswordVault();
 
-                // Save settings
+                // Save non-sensitive settings
                 localSettings.Values["Endpoints"] = EndpointsTextBox.Text;
                 localSettings.Values["ApiKey"] = ApiKeyPasswordBox.Password;
                 localSettings.Values["FtpUsername"] = UsernameTextBox.Text;
-                localSettings.Values["FtpPassword"] = CredentialsPasswordBox.Password;
-                localSettings.Values["FormulaPassword"] = FormulaPasswordBox.Password;
+
+                // Save FTP password to Credential Locker
+                if (!string.IsNullOrEmpty(CredentialsPasswordBox.Password))
+                {
+                    try
+                    {
+                        // Remove existing credential if it exists
+                        var existingFtpCred = vault.Retrieve(CredentialResourceFtp, DefaultUsername);
+                        vault.Remove(existingFtpCred);
+                    }
+                    catch (Exception)
+                    {
+                        // Credential doesn't exist yet, which is fine
+                    }
+
+                    var ftpCredential = new PasswordCredential(
+                        CredentialResourceFtp,
+                        DefaultUsername,
+                        CredentialsPasswordBox.Password
+                    );
+                    vault.Add(ftpCredential);
+                }
+
+                // Save Formula password to Credential Locker
+                if (!string.IsNullOrEmpty(FormulaPasswordBox.Password))
+                {
+                    try
+                    {
+                        // Remove existing credential if it exists
+                        var existingFormulaCred = vault.Retrieve(CredentialResourceFormula, DefaultUsername);
+                        vault.Remove(existingFormulaCred);
+                    }
+                    catch (Exception)
+                    {
+                        // Credential doesn't exist yet, which is fine
+                    }
+
+                    var formulaCredential = new PasswordCredential(
+                        CredentialResourceFormula,
+                        DefaultUsername,
+                        FormulaPasswordBox.Password
+                    );
+                    vault.Add(formulaCredential);
+                }
 
                 // Show success message
                 var dialog = new ContentDialog
@@ -93,6 +158,16 @@ namespace Work_winui_.User
         {
             // Reload settings to discard changes
             LoadSettings();
+        }
+
+        private void PDFBrowseButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void TemplateBrowseBrowseButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
