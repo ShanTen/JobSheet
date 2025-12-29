@@ -51,8 +51,8 @@ namespace Work_winui_
         SystemBackdropConfiguration m_configurationSource;
 
         private SUBCLASSPROC SubClassDelegate;
-        private const int MinWidth = 1000;
-        private const int MinHeight = 600;
+        private const int MinWidth = 1250;
+        private const int MinHeight = 700;
 
         private int WindowSubClass(IntPtr hWnd, uint uMsg, IntPtr wParam, IntPtr lParam, IntPtr uIdSubclass, uint dwRefData)
         {

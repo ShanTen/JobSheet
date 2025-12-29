@@ -113,20 +113,16 @@ namespace Work_winui_.User
                 formType = "High Density Cartridge Heater";
                 await CollectAndSaveCartridgeHeaterData();
             }
-            //else if (TubularHeaterForm.Visibility == Visibility.Visible)
-            //{
-            //    formType = "Tubular Heater";
-            //    await CollectAndSaveTubularHeaterData();
-            //}
-            //else if (SwaggingForm.Visibility == Visibility.Visible)
-            //{
-            //    formType = "SWAGGING TO FINISHING";
-            //    await CollectAndSaveSwagData();
-            //}
             else
             {
                 await ShowMessageAsync("Error", "Please select a valid heater type.");
             }
+        }
+
+
+        private void CalculateButton_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO: Implement calculation logic here
         }
 
         private async Task CollectAndSaveCartridgeHeaterData()
@@ -607,5 +603,6 @@ namespace Work_winui_.User
                 System.Diagnostics.Debug.WriteLine($"{title}: {message}");
             }
         }
+
     }
 }
