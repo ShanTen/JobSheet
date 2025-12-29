@@ -8,109 +8,163 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <Grid Padding="40,20,40,40" MaxWidth="1400">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalAlignment="Center">
+        <StackPanel Padding="40,20,40,40" MaxWidth="1400" MinWidth="1000" HorizontalAlignment="Center">
             <!-- Header -->
-            <TextBlock Grid.Row="0" 
-                       Text="Settings Page" 
+            <TextBlock Text="Settings Page" 
                        FontSize="28" 
                        FontWeight="SemiBold"
                        Margin="0,0,0,30"/>
 
             <!-- Upload Settings Section -->
-            <Border Grid.Row="1" 
-                    Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+            <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
                     BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
                     BorderThickness="1"
                     CornerRadius="8"
-                    Padding="30"
+                    Padding="24"
                     Margin="0,0,0,20">
-                <StackPanel>
+                <StackPanel Spacing="16">
                     <TextBlock Text="Upload Settings" 
-                               FontSize="18" 
-                               FontWeight="SemiBold"
-                               Margin="0,0,0,20"/>
+                               FontSize="16" 
+                               FontWeight="SemiBold"/>
 
                     <!-- Endpoints -->
-                    <TextBlock Text="Endpoints" 
-                               Margin="0,0,0,8"/>
-                    <TextBox x:Name="EndpointsTextBox"
-                             PlaceholderText="https://api.example.com/endpoint"
-                             Width="430"
-                             HorizontalAlignment="Left"
-                             Margin="0,0,0,20"/>
+                    <StackPanel>
+                        <TextBlock Text="Endpoints" 
+                                   FontSize="13"
+                                   Margin="0,0,0,6"/>
+                        <TextBox x:Name="EndpointsTextBox"
+                                 PlaceholderText="https://api.example.com/endpoint"
+                                 HorizontalAlignment="Stretch"/>
+                    </StackPanel>
 
                     <!-- Api Key -->
-                    <TextBlock Text="Api Key" 
-                               Margin="0,0,0,8"/>
-                    <PasswordBox x:Name="ApiKeyPasswordBox"
-                                 PlaceholderText="Enter API Key"
-                                 Width="430"
-                                 HorizontalAlignment="Left"
-                                 Margin="0,0,0,20"/>
+                    <StackPanel>
+                        <TextBlock Text="Api Key" 
+                                   FontSize="13"
+                                   Margin="0,0,0,6"/>
+                        <PasswordBox x:Name="ApiKeyPasswordBox"
+                                     PlaceholderText="Enter API Key"
+                                     HorizontalAlignment="Stretch"/>
+                    </StackPanel>
 
                     <!-- Credentials - Username -->
-                    <TextBlock Text="Credentials" 
-                               Margin="0,0,0,8"/>
-                    <TextBox x:Name="UsernameTextBox"
-                             PlaceholderText="Username"
-                             Width="430"
-                             HorizontalAlignment="Left"
-                             Margin="0,0,0,15"/>
-                    
-                    <!-- Credentials - Password -->
-                    <PasswordBox x:Name="CredentialsPasswordBox"
-                                 PlaceholderText="Password"
-                                 Width="430"
-                                 HorizontalAlignment="Left"
-                                 Margin="0,0,0,0"/>
+                    <StackPanel>
+                        <TextBlock Text="Credentials" 
+                                   FontSize="13"
+                                   Margin="0,0,0,6"/>
+                        <TextBox x:Name="UsernameTextBox"
+                                 PlaceholderText="Username"
+                                 HorizontalAlignment="Stretch"
+                                 Margin="0,0,0,12"/>
+
+                        <!-- Credentials - Password -->
+                        <PasswordBox x:Name="CredentialsPasswordBox"
+                                     PlaceholderText="Password"
+                                     HorizontalAlignment="Stretch"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <!-- Path Settings Section -->
+            <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                    BorderThickness="1"
+                    CornerRadius="8"
+                    Padding="24"
+                    Margin="0,0,0,20">
+                <StackPanel Spacing="16">
+                    <TextBlock Text="Path Settings" 
+                               FontSize="16" 
+                               FontWeight="SemiBold"/>
+
+                    <!-- Template Folder Path -->
+                    <StackPanel>
+                        <TextBlock Text="Template Folder Path" 
+                                   FontSize="13"
+                                   Margin="0,0,0,6"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <TextBox x:Name="TemplatePathTextBox"
+                                     Grid.Column="0"
+                                     IsReadOnly="True"    
+                                     PlaceholderText="Select a folder..."
+                                     Margin="0,0,12,0"/>
+                            <Button Grid.Column="1"
+                                    Content="Browse"
+                                    MinWidth="120"
+                                    Click="TemplateBrowseBrowseButton_Click" />
+                        </Grid>
+                    </StackPanel>
+
+                    <!-- PDF Folder Path -->
+                    <StackPanel>
+                        <TextBlock Text="PDF Folder Path" 
+                                   FontSize="13"
+                                   Margin="0,0,0,6"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <TextBox x:Name="PDFPathTextBox"
+                                     Grid.Column="0"
+                                     IsReadOnly="True"
+                                     PlaceholderText="Select a folder..."
+                                     Margin="0,0,12,0"/>
+                            <Button Grid.Column="1"
+                                    Content="Browse"
+                                    MinWidth="120"
+                                    Click="PDFBrowseButton_Click" />
+                        </Grid>
+                    </StackPanel>
                 </StackPanel>
             </Border>
 
             <!-- Formula Settings Section -->
-            <Border Grid.Row="2" 
-                    Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+            <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
                     BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
                     BorderThickness="1"
                     CornerRadius="8"
-                    Padding="30">
-                <StackPanel>
+                    Padding="24"
+                    Margin="0,0,0,0">
+                <StackPanel Spacing="16">
                     <TextBlock Text="Formula Settings" 
-                               FontSize="18" 
-                               FontWeight="SemiBold"
-                               Margin="0,0,0,20"/>
+                               FontSize="16" 
+                               FontWeight="SemiBold"/>
 
                     <!-- Password for the formulae -->
-                    <TextBlock Text="Password for the formulae" 
-                               Margin="0,0,0,8"/>
-                    <PasswordBox x:Name="FormulaPasswordBox"
-                                 PlaceholderText="Enter password"
-                                 Width="430"
-                                 HorizontalAlignment="Left"
-                                 Margin="0,0,0,30"/>
+                    <StackPanel>
+                        <TextBlock Text="Password for the formulae" 
+                                   FontSize="13"
+                                   Margin="0,0,0,6"/>
+                        <PasswordBox x:Name="FormulaPasswordBox"
+                                     PlaceholderText="Enter password"
+                                     HorizontalAlignment="Stretch"
+                                     Margin="0,0,0,16"/>
+                    </StackPanel>
 
                     <!-- Action Buttons -->
-                    <StackPanel Orientation="Horizontal">
-                        <Button x:Name="SaveChangesButton"
-                                Content="Save Changes"
-                                Style="{StaticResource AccentButtonStyle}"
-                                Click="SaveChangesButton_Click"
-                                Padding="20,8"
-                                Margin="0,0,10,0"/>
-                        
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="12">
                         <Button x:Name="CancelButton"
                                 Content="Cancel"
-                                Click="CancelButton_Click"
-                                Padding="20,8"/>
+                                Width="120"
+                                Height="40"
+                                Click="CancelButton_Click"/>
+                        <Button x:Name="SaveChangesButton"
+                                Content="Save Changes"
+                                Width="140"
+                                Height="40"
+                                Style="{StaticResource AccentButtonStyle}"
+                                Click="SaveChangesButton_Click"/>
                     </StackPanel>
                 </StackPanel>
             </Border>
-        </Grid>
+        </StackPanel>
     </ScrollViewer>
 </UserControl>

@@ -20,7 +20,7 @@
 			<local1:SideBar x:Name="sideBar" />
 		</SplitView.Pane>		
         <SplitView.Content >
-            <Frame x:Name="ContentFrame" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" CornerRadius="10" Translation="0,0,16" Margin="0,15,15,15" BorderBrush="{ThemeResource SystemControlBackgroundBaseLowBrush}" BorderThickness="1">
+            <Frame x:Name="ContentFrame" Background="Transparent" CornerRadius="10" Translation="0,0,16" Margin="0,15,15,15" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1">
                 <Frame.Shadow>
                     <ThemeShadow/>
                 </Frame.Shadow>

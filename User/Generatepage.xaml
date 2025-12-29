@@ -6,8 +6,7 @@
     xmlns:local="using:Work_winui_.User"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource LayerFillColorDefaultBrush}">
+    mc:Ignorable="d">
 
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalAlignment="Center">
         <StackPanel Padding="40,20,40,40" MaxWidth="1400" MinWidth="1000" HorizontalAlignment="Center">
@@ -73,6 +72,7 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 
+
                                 <!-- Customer Name -->
                                 <StackPanel Grid.Column="0">
                                     <TextBlock Text="Customer Name" FontSize="13" Margin="0,0,0,6"/>
@@ -389,10 +389,13 @@
 
                     <!-- Action Buttons -->
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="12">
-                        <Button Content="Cancel"
+
+                        <Button Content="Calculate"
                                 Width="120"
                                 Height="40"
-                                Style="{StaticResource DefaultButtonStyle}"/>
+                                Style="{StaticResource DefaultButtonStyle}"
+                                Click="CalculateButton_Click"/>
+
                         <Button Content="Save Jobsheet"
                                 x:Name="CreateButton"
                                 Width="140"
